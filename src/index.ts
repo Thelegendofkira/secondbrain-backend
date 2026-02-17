@@ -12,7 +12,15 @@ import cors from "cors";
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: [
+        "https://secondbrain-frontend-4c8z.vercel.app",
+        "http://localhost:5173"
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "token"]
+}));
 app.post('/api/signup', async (req, res) => {
     let response;
     try {
